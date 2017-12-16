@@ -12,7 +12,8 @@
 <body>
   <div id="mainDiv">
     <header>
-      <img src="" alt="">
+      <button></button>
+      <img v-bind:src="comments[0].food_img" alt="美食">
       <div class="msg-div">
         <h3>5.0</h3>
         <h4>年糕</h4>
@@ -23,22 +24,22 @@
       <div class="user-content" v-for="item in comments">
         <div class="header-and-score">
           <div class="user-header">
-            <img src="" alt="">
+            <img v-bind:src="item.user_img" alt="">
             <div>
-              <span>item.nickname</span>
-              <p>item.publish_time</p>
+              <span>{{item.nickname}}</span>
+              <p>{{item.publish_time}}</p>
             </div>
           </div>
           <div class="score">
-            <button></button>
-            <p>item.like_count</p>
+            <button v-bind:class="[item.is_liked? 'button-style2':'','score-button']" v-bind:value="item.id" @click="zanButton($event)"></button>
+            <p>{{item.like_count}}</p>
           </div>
         </div>
         <div class="img-and-comment">
           <div class="comment">
-            
+            {{item.content}}
           </div>
-          <img v-bind:src="item.img_urls" alt="">
+          <img v-bind:src="item.img_urls" alt="美食">
         </div>
       </div>
     </div>
@@ -55,24 +56,49 @@
         like_count:null,
         publish_time:null,
         is_liked:null,
-        img_urls:null
-      }]
+        img_urls:null,
+        food_img:null,
+        user_img:null,
+        id:null
+      }],
+      clickId:null
     },
     methods:{
       dealResponse:function(txt){
-        for(var i = 0; i < txt.length; i++){
-          this.comments.push(txt[i]);
+        for(var i = 0; i < txt.comments.length; i++){
+          this.comments.push(txt.comments[i]);
         }
         this.comments.splice(0,1);
       },
+      dealButtonFn:function(txt){
+        if(txt.code == 0){
+          for(var i = 0; i < this.comments.length; i++){
+            if(this.comments[i].id == clickId){
+               this.comments[this.clickId].is_liked = true; 
+            }
+          }
+        }
+        else{
+          // window.location.href = "login.html";
+        }
+      },
       //点赞按钮事件处理函数
-      zanButton:function(){
+      zanButton:function(event){
         var that = this;
+        this.clickId = event.currentTarget.getAttribute("value");
         httpData.method = "get";
-        httpData.url = "";
-        httpData.dealFn = this.dealResponse;
+        httpData.url = "http://139.199.66.15:5000/api/user/like/";
+        httpData.url += this.clickId;
+        httpData.dealFn = this.dealButtonFn;
         sendMessage.call(that,httpData);
       }
+    },
+    mounted:function(){
+      var that = this;
+      httpData.method = "get";
+      httpData.url = "http://139.199.66.15:5000/api/food/1";
+      httpData.dealFn = this.dealResponse;
+      sendMessage.call(that,httpData);
     }
   })
 </script>

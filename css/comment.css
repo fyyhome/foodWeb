@@ -1,11 +1,19 @@
 header{
   width: 100%;
   height: 6.32rem;
-  border:solid;
 }
 header img{
   width: 100%;
   height: 100%;
+}
+header button{
+  width: 0.813rem;
+  height: 0.733rem;
+  position: absolute;
+  top: 0.693rem;
+  left: 0.387rem;
+  background-color: transparent;
+  background-image: url(../images/index/back_2x.png);
 }
 .msg-div{
   position: absolute;
@@ -13,10 +21,10 @@ header img{
   top:2.427rem; 
   width: 3.707rem;
   height: 3.893rem;
-  background-color: #ffffff;
+  background-color: rgb(190,183,179,0.3);
   border-radius: 0.267rem 0.267rem 0rem 0rem;
-  opacity: 0.21;
   text-align: center;
+  color: white;
 }
 .msg-div h3{
   font-size: 100px;
@@ -37,12 +45,14 @@ header img{
   align-items: center;
 }
 .user-content{
-  border:solid;
   height: 3.853rem;
   width: 8.653rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  border-bottom:solid;
+  border-bottom-color: #e2e2e4;
+  border-bottom-width: 1px;
 }
 .header-and-score{
   width: 100%;
@@ -64,9 +74,9 @@ header img{
   justify-content: space-between;
 }
 .user-header img{
-  border:solid;
   width: 1.04rem;
   height: 100%;
+  border-radius: 50%;
 }
 .user-header div{
   width: 2.147rem;
@@ -74,6 +84,7 @@ header img{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-left: 0.25rem;
 }
 .user-header span{
   font-size: 26px;
@@ -81,9 +92,14 @@ header img{
 .user-header p{
   font-size: 18px;
 }
-.score button{
+.score-button{
   width: 0.68rem;
   height: 0.667rem;
+ background-color: transparent;
+ background-image: url(../images/publish/just-soso-2x.png);
+}
+.button-style2{
+  background-image: url(../images/publish/like-2x.png);
 }
 .score p{
   text-align: center;

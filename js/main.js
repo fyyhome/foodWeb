@@ -41,8 +41,10 @@ function sendMessage(httpData){
     }
   };
   xhr.open(httpData.method,httpData.url,true);
-  if(window.localStorage.token != undefined) 
-    xhr.setRequestHeader("Authorization",window.localStorage.token);
+  if(window.localStorage.token == undefined) {
+    window.localStorage.token = "qqq";
+  }
+  xhr.setRequestHeader("Authorization",window.localStorage.token);
   if(httpData.method === 'post'){
     var msg = JSON.stringify(httpData.msg);
     xhr.send(msg);
@@ -74,8 +76,10 @@ function form(httpData) {
     }
   };
   oReq.open(httpData.method,httpData.url,true);
-  if(window.localStorage.token != undefined) 
-    oReq.setRequestHeader("Authorization",window.localStorage.token);
+  if(window.localStorage.token == undefined) {
+    window.localStorage.token = "qqq";
+  }
+  oReq.setRequestHeader("Authorization",window.localStorage.token);
   oReq.send(formData);
 }
 

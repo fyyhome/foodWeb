@@ -87,13 +87,14 @@ header div a{
   flex-direction: row;
   flex-wrap: wrap;
   align-items: start;
+  justify-content: space-around;
+  padding: 0.25rem;
 }
 .food{
   width: 1.307rem;
   display: inline-block;
   word-wrap: break-word;
   height: auto;
-  /*height: 0.56rem;*/
   max-height: 2rem;
   font-size: 24px;
   border:solid;
