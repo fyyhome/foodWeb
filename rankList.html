@@ -117,18 +117,17 @@
         },
         
         addButton:function(){
-          if (window.localStorage.token == undefined) {
-            window.location.href = "login.html";
-          }
-          else{
-            var that = this;
-            httpData.method = 'get';
-            httpData.url = addURL('',judge,isOnline);
-            httpData.dealFn = this.dealResponse;
-            sendMessage.call(that,httpData);
-          }
+          // if (window.localStorage.token == undefined) {
+            window.location.href = "publish.html";
+          // }
+          // else{
+          //   var that = this;
+          //   httpData.method = 'get';
+          //   httpData.url = addURL('',judge,isOnline);
+          //   httpData.dealFn = this.dealResponse;
+          //   sendMessage.call(that,httpData);
+          // }
         }
-        
       },
       created:function(){
         var that = this;
