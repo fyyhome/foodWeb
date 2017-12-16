@@ -24,18 +24,18 @@
           <div class="range">
             <div class="range-two">
               <img class="range-two-logo" src="./images/ranklist/silvery crown-2x.png" alt="第三名">
-              <img class="range-two-user" src="./images/ranklist/coppery crown -3x.png" alt="用户头像">
-              <font>食物描述</font>
+              <img class="range-two-user" v-bind:src="rank_user[2].foodImg" alt="用户头像">
+              <font>{{rank_user[2].foodName}}</font>
             </div>
             <div class="range-one">
               <img class="range-one-logo" src="./images/ranklist/yellow crown-2x.png" alt="第一名">
-              <img class="range-one-user" src="./images/ranklist/coppery crown -3x.png" alt="用户头像">
-              <font>食物描述</font>
+              <img class="range-one-user" v-bind:src="rank_user[0].foodImg" alt="用户头像">
+              <font>{{rank_user[0].foodName}}</font>
             </div>
             <div class="range-two">
               <img class="range-two-logo" src="./images/ranklist/coppery crown -2x.png" alt="第二名">
-              <img class="range-two-user" src="./images/ranklist/coppery crown -3x.png" alt="用户头像">
-              <font>食物描述</font>
+              <img class="range-two-user" v-bind:src="rank_user[1].foodImg" alt="用户头像">
+              <font>{{rank_user[1].foodName}}</font>
             </div>
           </div>
           <div class="range-method">
@@ -56,7 +56,7 @@
             <p>{{n+3}}</p>
           </div>
           <div class="food-msg">
-            <img src="./images/ranklist/coppery crown -3x.png" alt="美食">
+            <img v-bind:src="rank_user[n].foodImg" alt="美食">
             <div id="about_food">
               <div class="food-name">
                 <span>好吃的哦</span>
@@ -119,24 +119,24 @@
           if (window.localStorage.token == undefined) {
             window.location.href = "login.html";
           }
-          // else{
-          //   var that = this;
-          //   httpData.method = 'get';
-          //   httpData.url = addURL('',judge,isOnline);
-          //   httpData.dealFn = this.dealResponse;
-          //   sendMessage.call(that,httpData);
-          // }
+          else{
+            var that = this;
+            httpData.method = 'get';
+            httpData.url = addURL('',judge,isOnline);
+            httpData.dealFn = this.dealResponse;
+            sendMessage.call(that,httpData);
+          }
         }
         
-      }//,
+      },
         
-      // created:function(){
-      //   var that = this;
-      //    httpData.method = 'get';
-      //   httpData.url = addURL('',rankMethod,score);
-      //   httpData.dealFn = this.dealResponse;
-      //   sendMessage.call(that,httpData);
-      // },
+      created:function(){
+        var that = this;
+         httpData.method = 'get';
+        httpData.url = 'http://192.168.2.212:8080/api/rank';
+        httpData.dealFn = this.dealResponse;
+        sendMessage.call(that,httpData);
+      },
     })
   </script>
 </html>

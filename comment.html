@@ -12,7 +12,7 @@
 <body>
   <div id="mainDiv">
     <header>
-      <button></button>
+      <button v-on:click="window.history.back()"></button>
       <img v-bind:src="comments[0].food_img" alt="美食">
       <div class="msg-div">
         <h3>5.0</h3>
@@ -73,13 +73,14 @@
       dealButtonFn:function(txt){
         if(txt.code == 0){
           for(var i = 0; i < this.comments.length; i++){
-            if(this.comments[i].id == clickId){
-               this.comments[this.clickId].is_liked = true; 
+            if(this.comments[i].id == this.clickId){
+               this.comments[i].is_liked = true;
+               this.comments[i].like_count += 1 
             }
           }
         }
-        else{
-          // window.location.href = "login.html";
+        else if(txt.code === 4 ){
+          window.location.href = "login.html";
         }
       },
       //点赞按钮事件处理函数

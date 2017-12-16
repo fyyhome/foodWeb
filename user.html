@@ -13,7 +13,7 @@
     <div id="mainDiv">
       <div class="orange-bg">
         <header>
-          <img src="./images/ranklist/logo.png" alt="logo">
+          <img src="./images/index/logo_2x.png" alt="logo">
           <div>
             <a href="rankList.html">排行</a>
             <a href="summary.html">汇总</a>
@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="range-one user-header">
-              <img class="range-one-user" src="./images/ranklist/coppery crown -3x.png" alt="用户头像">
+              <img class="range-one-user" v-bind:src="rank_user[0].head_img" alt="用户头像">
               <font>食物描述</font>
             </div>           
           </div>
@@ -82,7 +82,8 @@
           food_name:null,
           img_urls:null,
           site:null,
-          publish_time:null
+          publish_time:null,
+          head_img:null
         }]
       },
       methods:{
