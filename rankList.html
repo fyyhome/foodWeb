@@ -56,7 +56,7 @@
             <p>{{n+3}}</p>
           </div>
           <div class="food-msg">
-            <img v-bind:src="rank_user[n].foodImg" alt="美食">
+            <img v-bind:src="rank_user[0].foodImg" alt="美食">
             <div id="about_food">
               <div class="food-name">
                 <span>好吃的哦</span>
@@ -90,6 +90,7 @@
         dealResponse:function(txt){
           if(txt.code == 0){
             for(var i = 0; i < txt.data.length; i++){
+              console.log(txt.data[i].foodImg);
               this.rank_user.push(txt.data[i]);
             }
             this.rank_user.splice(0,1);      
@@ -129,14 +130,13 @@
         }
         
       },
-        
       created:function(){
         var that = this;
          httpData.method = 'get';
-        httpData.url = 'http://192.168.2.212:8080/api/rank';
+        httpData.url = 'http://192.168.2.212:8888/api/rank';
         httpData.dealFn = this.dealResponse;
         sendMessage.call(that,httpData);
-      },
+      }
     })
   </script>
 </html>
