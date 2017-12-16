@@ -1,0 +1,106 @@
+header{
+  width: 100%;
+  height: 1.813rem;
+  background-color: rgb(252,131,103);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+header div{
+  width: 7.786rem;
+  height: 0.88rem;
+  display: flex;
+  justify-content: space-between;
+}
+header img{
+  width: 0.76rem;
+  height: 0.84rem;
+  position: absolute;
+  left: 0.293rem;
+  top: 0.75rem;
+}
+header div a{
+  width: 2.4rem;
+  height: 0.88rem;
+  font-size: 40px;
+  color: #fffefe;
+  text-align: center;
+}
+.current-page{
+  border-bottom: solid;
+  border-bottom-color: white;
+  border-bottom-width: 0.053rem;
+}
+#details{
+  width: 100%;
+  height: 15.933rem;
+  display: flex;
+  flex-direction: row;
+}
+#details aside{
+  width: 2.867rem;
+  height: 100%;
+}
+.canteens{
+  width: 100%;
+  height: 12.614rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.logo{
+  width: 100%;
+  height: 3.319rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#details aside div input[type=button]{
+  width: 100%;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  background-color: transparent;
+  font-size: 30px;
+  color: #3e3e3e;
+  text-align: center;
+}
+#details aside div input[type=button]:hover{
+  background-color: rgb(240,240,241);
+}
+#details aside div img{
+  width: 1.867rem;
+  height: 1.867rem;
+}
+.shops{
+  width: 7.133rem;
+  height: 100%;
+  background-color: rgb(240,240,241);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shop{
+  width: 6.587rem;
+  height: 3.467rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: start;
+}
+.food{
+  width: 1.307rem;
+  display: inline-block;
+  word-wrap: break-word;
+  height: auto;
+  /*height: 0.56rem;*/
+  max-height: 2rem;
+  font-size: 24px;
+  border:solid;
+}
+.food button{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: transparent;
+}

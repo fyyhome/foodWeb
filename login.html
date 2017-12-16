@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>something about food</title>
+    <link type="text/css" rel="stylesheet" href="./css/index.css">
+    <link type="text/css" rel="stylesheet" href="./css/reset.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+  </head>
+  <body>
+    <div class="head-div">
+      <a href="#"></a>
+      <div class="logo-div">
+        <img class="logo-div-img" src="./images/index/logo_2x.png" />
+      </div>
+    </div>
+    <div id="login" class="input-div">
+      <form action="#" method="post" accept-charset="utf-8">
+           <img src="./images/index/head_2x.png"/> 
+           <input type="text" id="username" placeholder="请输入账号" v-model="phone_number"><hr>
+           <img src="./images/index/password_2x.png"/> 
+           <input type="password" id="password" placeholder="请输入密码" v-model="password"><hr>
+           <input type="button" value="登录" v-on:click="loginFn">
+           <a class="back-style change-password" href="changePassword.html">修改密码</a>
+           <a class="back-style back-index" href="index.html">注册</a>
+      </form>
+      <div class="error-tip" v-if="tip != null">{{tip}}</div>
+    </div>
+  </body>
+  <script>
+    var app = new Vue({
+      el:'#login',
+      data:{
+        phone_number:null,
+        password:null,
+        tip:null
+      },
+      methods:{
+        dealResponse:function(txt){
+          var that = this;
+          if(txt.code === 0){
+            var storage = window.localStorage;
+            storage.token = txt.token; 
+            window.location.href = "rankList.html";
+          }
+          else{
+            that.tip = "账号或密码错误！";
+            setTimeout(function(){
+              that.tip = null;
+            },1500);
+          }
+        },
+        loginFn:function(){
+          var that = this;
+          if(this.phone_number === null || this.password === null){
+            this.tip = "账号或密码为空";
+            setTimeout(function(){
+              that.tip = null;
+            },1500);
+          }
+          else{
+            httpData.method = 'post';
+            httpData.msg = {
+              phone_number:this.phone_number,
+              password:this.password
+            };
+            httpData.url = 'http://139.199.66.15:5000/api/user/token';
+            httpData.dealFn = this.dealResponse;
+            sendMessage.call(that,httpData);
+          }
+        }
+      }
+    });
+  </script>
+</html>

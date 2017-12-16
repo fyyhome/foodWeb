@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>something about food</title>
+    <link type="text/css" rel="stylesheet" href="./css/reset.css">
+    <link type="text/css" rel="stylesheet" href="./css/rankList-user.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+  </head>
+  <body>
+    <div id="mainDiv">
+      <div class="orange-bg">
+        <header>
+          <img src="./images/ranklist/logo.png" alt="logo">
+          <div>
+            <a href="rankList.html">排行</a>
+            <a href="summary.html">汇总</a>
+            <a class="current-page">我的</a>
+          </div>
+        </header>
+        <div id="head_range">
+          <div class="range">
+            <div class="icon-div">
+              <div>
+                <img src="./images/user/change password-2x.png" alt="修改密码">
+                <a href="changePassword.html">修改密码</a>
+              </div>
+              <div>
+                <img src="./images/user/quit-2x.png" alt="退出登录">
+                <button v-on:click="quitButton">退出登录</button>
+              </div>
+            </div>
+            <div class="range-one user-header">
+              <img class="range-one-user" src="./images/ranklist/coppery crown -3x.png" alt="用户头像">
+              <font>食物描述</font>
+            </div>           
+          </div>
+          <div class="range-method">
+            <div>
+              <img src="./images/user/release-2x.png" alt="发布历史">
+              <button class="range-method-button" v-on:click="historyButton" v-bind:class="{'current-button': !timeOrScore}">发布历史</button>
+            </div>
+            <div>
+              <img src="./images/user/notice-2x.png" alt="系统通知">
+              <button class="range-method-button" v-bind:class="{'current-button': timeOrScore}">系统通知</button>
+              <!-- <button class="range-method-button" v-on:click="noticeButton" v-bind:class="{'current-button': timeOrScore}">系统通知</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="history-layout">
+        <div class="other-history" v-for="item in rank_user">
+          <!-- <div class="num">
+            <p>{{n+3}}</p>
+          </div> -->
+          <div class="food-msg">
+            <img v-bind:src="item.img_urls" alt="美食">
+            <div id="about_food">
+              <div class="food-name">
+                <span>{{item.food_name}}</span>
+                <p>{{item.site}}</p>
+              </div>
+              <div class="score">
+                <span>{{item.score}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var rank = new Vue({
+      el:'#mainDiv',
+      data:{
+        timeOrScore:0,
+        rank_user:[{
+          nickname:null,
+          score:null,
+          food_name:null,
+          img_urls:null,
+          site:null,
+          publish_time:null
+        }]
+      },
+      methods:{
+        dealResponse:function(txt){
+          for(var i = 0; i < txt.comments.length; i++){
+            this.rank_user.push(txt.comments[i]);
+          }
+          this.rank_user.splice(0,1);      
+        },
+        historyButton:function(){
+          this.timeOrScore = 0;
+          var that = this;
+          // httpData.method = 'get';
+          // httpData.dealFn = this.dealResponse;
+          httpData.url = addURL('http://139.199.166.15:5000/api/user/comments',rankMethod,score);
+          sendMessage.call(that,httpData);
+        },
+        noticeButton:function(){
+          this.timeOrScore = 1;
+          var that = this;
+          // httpData.method = 'get';
+          // httpData.dealFn = this.dealResponse;
+          httpData.url = addURL('http://139.199.166.15:5000/api/user/comments',rankMethod,time);
+          sendMessage.call(that,httpData);
+        },
+        quitButton:function(){
+          if(window.localStorage.token != undefined)
+            window.localStorage.removeItem("token");
+          window.location.href = "login.html";
+        },
+        requestMore:function(){
+          var that = this;
+          // httpData.method = 'get';
+          // httpData.dealFn = this.dealResponse;
+          httpData.url = addURL('http://139.199.166.15:5000/api/user/comments',rankMethod,score);
+          touchMove.call(that,httpData);
+        }
+      }, 
+      created:function(){
+        var that = this;
+        httpData.method = 'get';
+        httpData.url = 'http://139.199.66.15:5000/api/user/comments';
+        httpData.dealFn = this.dealResponse;
+        sendMessage.call(that,httpData);
+            window.onload = function(){
+              window.addEventListener('touchstart',touchStart,false);
+              window.addEventListener('touchmove',this.requestMore,false);
+            };
+      }
+    })
+  </script>
+</html>

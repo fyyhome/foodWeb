@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>something about food</title>
+    <link type="text/css" rel="stylesheet" href="./css/reset.css">
+    <link type="text/css" rel="stylesheet" href="./css/comment.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+</head>
+<body>
+  <div id="mainDiv">
+    <header>
+      <img src="" alt="">
+      <div class="msg-div">
+        <h3>5.0</h3>
+        <h4>年糕</h4>
+        <p>商业街</p>
+      </div>
+    </header>
+    <div class="all-content">
+      <div class="user-content" v-for="item in comments">
+        <div class="header-and-score">
+          <div class="user-header">
+            <img src="" alt="">
+            <div>
+              <span>item.nickname</span>
+              <p>item.publish_time</p>
+            </div>
+          </div>
+          <div class="score">
+            <button></button>
+            <p>item.like_count</p>
+          </div>
+        </div>
+        <div class="img-and-comment">
+          <div class="comment">
+            
+          </div>
+          <img v-bind:src="item.img_urls" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  var app = new Vue({
+    el:"#mainDiv",
+    data:{
+      comments:[{
+        nickname:null,
+        score:null,
+        content:null,
+        like_count:null,
+        publish_time:null,
+        is_liked:null,
+        img_urls:null
+      }]
+    },
+    methods:{
+      dealResponse:function(txt){
+        for(var i = 0; i < txt.length; i++){
+          this.comments.push(txt[i]);
+        }
+        this.comments.splice(0,1);
+      },
+      //点赞按钮事件处理函数
+      zanButton:function(){
+        var that = this;
+        httpData.method = "get";
+        httpData.url = "";
+        httpData.dealFn = this.dealResponse;
+        sendMessage.call(that,httpData);
+      }
+    }
+  })
+</script>
+</html>

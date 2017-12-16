@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>something about food</title>
+    <link type="text/css" rel="stylesheet" href="./css/reset.css">
+    <link type="text/css" rel="stylesheet" href="./css/rankList-user.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+  </head>
+  <body>
+    <div id="mainDiv">
+      <div class="orange-bg">
+        <header>
+          <img src="./images/ranklist/logo.png" alt="logo">
+          <div>
+            <a class="current-page">排行</a>
+            <a href="summary.html">汇总</a>
+            <a href="user.html">我的</a>
+          </div>
+        </header>
+        <div id="head_range">
+          <div class="range">
+            <div class="range-two">
+              <img class="range-two-logo" src="./images/ranklist/silvery crown-2x.png" alt="第三名">
+              <img class="range-two-user" src="./images/ranklist/coppery crown -3x.png" alt="用户头像">
+              <font>食物描述</font>
+            </div>
+            <div class="range-one">
+              <img class="range-one-logo" src="./images/ranklist/yellow crown-2x.png" alt="第一名">
+              <img class="range-one-user" src="./images/ranklist/coppery crown -3x.png" alt="用户头像">
+              <font>食物描述</font>
+            </div>
+            <div class="range-two">
+              <img class="range-two-logo" src="./images/ranklist/coppery crown -2x.png" alt="第二名">
+              <img class="range-two-user" src="./images/ranklist/coppery crown -3x.png" alt="用户头像">
+              <font>食物描述</font>
+            </div>
+          </div>
+          <div class="range-method">
+            <div>
+              <img src="./images/ranklist/reorder-2x.png" alt="评分">
+              <button class="range-method-button" v-on:click="scoreButton" v-bind:class="{'current-button': !timeOrScore}">评分</button>
+            </div>
+            <div>
+              <img src="./images/ranklist/reorder-2x.png" alt="评分">
+              <button class="range-method-button" v-on:click="timeButton" v-bind:class="{'current-button': timeOrScore}">时间</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="rest_range">
+        <div class="other-range" v-for="n in 5">
+          <div class="num">
+            <p>{{n+3}}</p>
+          </div>
+          <div class="food-msg">
+            <img src="./images/ranklist/coppery crown -3x.png" alt="美食">
+            <div id="about_food">
+              <div class="food-name">
+                <span>好吃的哦</span>
+                <p>这是地点哦</p>
+              </div>
+              <div class="score">
+                <span>5.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="add-button" v-on:click="addButton"></button>
+    </div>
+  </body>
+  <script>
+    var rank = new Vue({
+      el:'#mainDiv',
+      data:{
+        timeOrScore:0,
+        rank_user:[{
+          rank:null,
+          score:null,
+          foodName:null,
+          foodSite:null,
+          foodShop:null,
+          foodImg:null
+        }]
+      },
+      methods:{
+        dealResponse:function(txt){
+          if(txt.code == 0){
+            for(var i = 0; i < txt.data.length; i++){
+              this.rank_user.push(txt.data[i]);
+            }
+            this.rank_user.splice(0,1);      
+          }
+          else{
+            window.location.href = "login.html";
+          }    
+        },
+        scoreButton:function(){
+          this.timeOrScore = 0;
+          var that = this;
+          // httpData.method = 'get';
+          // httpData.dealFn = this.dealResponse;
+          // httpData.url = addURL('',rankMethod,score);
+          // sendMessage.call(that,httpData);
+        },
+        timeButton:function(){
+          this.timeOrScore = 1;
+          var that = this;
+          // httpData.method = 'get';
+          // httpData.dealFn = this.dealResponse;
+          // httpData.url = addURL('',rankMethod,time);
+          // sendMessage.call(that,httpData);
+        },
+        
+        addButton:function(){
+          if (window.localStorage.token == undefined) {
+            window.location.href = "login.html";
+          }
+          // else{
+          //   var that = this;
+          //   httpData.method = 'get';
+          //   httpData.url = addURL('',judge,isOnline);
+          //   httpData.dealFn = this.dealResponse;
+          //   sendMessage.call(that,httpData);
+          // }
+        }
+        
+      }//,
+        
+      // created:function(){
+      //   var that = this;
+      //    httpData.method = 'get';
+      //   httpData.url = addURL('',rankMethod,score);
+      //   httpData.dealFn = this.dealResponse;
+      //   sendMessage.call(that,httpData);
+      // },
+    })
+  </script>
+</html>

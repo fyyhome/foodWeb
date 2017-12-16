@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <title>something about food</title>
+      <link type="text/css" rel="stylesheet" href="./css/reset.css">
+      <link rel="stylesheet" type="text/css" href="./css/publish.css">
+      <script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript" charset="utf-8"></script>
+      <script type="text/javascript" src="./js/main.js"></script>
+  </head>
+  <body>
+    <div id="mainDiv">
+      <header>
+        <a href="rankList.html"></a>
+      </header>
+      <div class="form-div">
+        <form>
+          <div class="form-score laout1">
+            <span class="title-txt">评分:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <input type="range" value="0" step="0.1" max="5" id="score" v-model="message.score">
+            <div class="form-score-div">
+              <span class="score-txt">{{message.score}}</span> 
+            </div>       
+          </div>
+          <div class="form-site laout1">
+            <span class="title-txt">美食名称:</span>
+            <input type="text" id="name" v-model="message.name">
+            <span class="foot-txt">(10字以内)</span>
+          </div>
+          <div class="form-score laout1">
+            <span class="title-txt">发现地点:</span>
+            <input type="text" id="site" v-model="message.site">
+            <div class="form-score-div">
+              <input type="button" v-on:click="showSelectSite">
+              </input>
+            </div>
+            <div class="select-site" v-if="select_site">
+              <input type="button" value="商业街" @click="selectSite($event)">
+              <input type="button" value="一食堂" @click="selectSite($event)">
+              <input type="button" value="二食堂" @click="selectSite($event)">
+              <input type="button" value="一食堂三楼" @click="selectSite($event)">
+              <input type="button" value="三食堂" @click="selectSite($event)">
+              <input type="button" value="四食堂" @click="selectSite($event)">
+              <input type="button" value="三食堂三楼" @click="selectSite($event)">
+              <input type="button" value="六食堂" @click="selectSite($event)">
+              <input type="button" value="七食堂" @click="selectSite($event)">
+              <input type="button" value="九食堂" @click="selectSite($event)">
+              <input type="button" value="十食堂" @click="selectSite($event)">
+              <input type="button" value="九食堂三楼" @click="selectSite($event)">
+              <input type="button" value="其他地点" @click="selectSite($event)">
+            </div>
+          </div>
+          <div class="form-site laout1">
+            <span class="title-txt">店铺名称:</span>
+            <input type="text" id="shop" v-model="message.shop">
+            <span class="foot-txt">(10字以内)</span>
+          </div>
+          <div class="form-content laout1">
+            <span class="title-txt form-content-span">我的评价:</span>
+            <textarea id="myContent" v-model="message.content"></textarea>
+            <!-- <input type="textarea" id="content" v-model="content"> -->
+            <div>
+            </div>
+          </div>
+          <div class="form-img" id="addImg">
+            <span class="title-txt form-content-span">我的图片:</span>
+            <div>
+              <input type="file" id="img" accept="image/*" v-on:change="showImg">
+            </div>
+          </div>
+          <div class="form-publish">
+            <input type="button" value="发布" @click="publishButton">
+          </div>
+        </form>
+      </div>
+      <footer>
+      </footer>
+    </div>
+  </body>
+  <script>
+    var app = new Vue({
+      el:'#mainDiv',
+      data:{
+          message:{
+            score:0,
+            content:null,
+            name:null,
+            site:null,
+            shop:null,
+            img:null
+          },
+          select_site:0
+      },
+      methods:{
+        dealResponse:function(txt){
+          if(txt.code == 0){
+            window.location.href = "user.html";
+          }
+          else{
+            console.log("发布失败");
+          }
+        },
+        showSelectSite:function(){
+          this.select_site = !this.select_site;
+        },
+        selectSite:function(event){
+          this.message.site = event.currentTarget.getAttribute('value');
+          this.select_site = !this.select_site;
+        },
+        showImg:function(){
+          var imgContainer = document.getElementById("addImg");
+          var file = document.getElementById("img");
+          var imgUrl = window.URL.createObjectURL(file.files[0]);
+          var img = document.createElement("img");
+          img.setAttribute("src", imgUrl);
+          var imgAdd = document.createElement("div");
+          imgAdd.appendChild(img);
+          imgContainer.appendChild(imgAdd);
+        },
+        publishButton:function(){
+          this.message.img = document.getElementById("img").files[0];
+          httpData.method = 'post';
+          httpData.url = 'http://192.168.2.215:8080/api/newComment';
+          httpData.msg = this.message;
+          httpData.dealFn = this.dealResponse;
+          var that = this;
+           form.call(that,httpData);
+        }
+      }
+    });
+  </script>
+</html>

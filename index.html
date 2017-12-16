@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>something about food</title>
+    <link type="text/css" rel="stylesheet" href="./css/index.css">
+    <link type="text/css" rel="stylesheet" href="./css/reset.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+  </head>
+  <body>
+    <div class="head-div">
+      <a href="login.html"></a>
+      <div class="logo-div">
+        <img class="logo-div-img" src="./images/index/logo_2x.png" />
+      </div>
+    </div>
+    <div id="index" class="input-div">
+      <form accept-charset="utf-8" style="height: 7.5rem">
+           <img src="./images/index/head_2x.png"/> 
+           <input type="text" id="username" placeholder="请输入手机号" v-model="phone_number">
+           <hr>
+           <img src="./images/index/name-2x.png"/> 
+           <input type="text" id="nickname" placeholder="请输入昵称" v-model="nickname">
+           <hr>
+           <img src="./images/index/password_2x.png"/> 
+           <input type="password" id="password" placeholder="请输入密码" v-model="password">
+           <hr>
+           <input type="button" v-on:click="regist" value="注册">
+           <a class="back-style back-login" href="login.html">登录</a>
+      </form>
+      <div class="error-tip" v-if="tip != null">{{tip}}</div>
+    </div>
+  </body>
+  <script>
+    var app = new Vue({
+      el:'#index',
+      data:{
+        phone_number:null,
+        nickname:null,
+        password:null,
+        tip:null
+      },
+      methods:{
+        dealResponse:function(txt){
+          var that = this;
+          if(txt.code === 0){
+            that.tip = "注册成功";
+            setTimeout(function(){
+              that.tip = null;
+              window.location.href = "login.html";
+            },1500);
+          }
+          else{
+            that.tip = "注册失败";
+            setTimeout(function(){
+              that.tip = null;
+            },1500);
+          }
+        },
+        regist:function(){
+          var that =this;
+          if(that.phone_number == null || that.nickname == null || that.password == null){
+            that.tip = '信息不完整';
+            setTimeout(function(){
+              that.tip =null;
+            },1500);
+          }
+          else{
+            httpData.method = 'post';
+            httpData.msg = {
+              phone_number:this.phone_number,
+              nickname:this.nickname,
+              password:this.password
+            };
+            httpData.url = 'http://139.199.66.15:5000/api/user/register';
+            httpData.dealFn = this.dealResponse;
+            sendMessage.call(that,httpData);
+          }     
+        }
+      }
+    });
+  </script>
+</html>

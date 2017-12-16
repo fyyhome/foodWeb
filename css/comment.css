@@ -1,0 +1,111 @@
+header{
+  width: 100%;
+  height: 6.32rem;
+  border:solid;
+}
+header img{
+  width: 100%;
+  height: 100%;
+}
+.msg-div{
+  position: absolute;
+  right: 0;
+  top:2.427rem; 
+  width: 3.707rem;
+  height: 3.893rem;
+  background-color: #ffffff;
+  border-radius: 0.267rem 0.267rem 0rem 0rem;
+  opacity: 0.21;
+  text-align: center;
+}
+.msg-div h3{
+  font-size: 100px;
+}
+.msg-div h4{
+  font-size: 72px;
+}
+.msg-div p{
+  font-size: 24px;
+
+}
+.all-content{
+  width: 100%;
+  height: 11.467rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-content{
+  border:solid;
+  height: 3.853rem;
+  width: 8.653rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.header-and-score{
+  width: 100%;
+  height: 1.04rem; 
+  display: flex;
+  justify-content: space-between;
+}
+.user-header{
+  width: 3.187rem;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.score{
+  width: 0.68rem;
+  height: 0.974rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.user-header img{
+  border:solid;
+  width: 1.04rem;
+  height: 100%;
+}
+.user-header div{
+  width: 2.147rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.user-header span{
+  font-size: 26px;
+}
+.user-header p{
+  font-size: 18px;
+}
+.score button{
+  width: 0.68rem;
+  height: 0.667rem;
+}
+.score p{
+  text-align: center;
+  font-size: 12px;
+  word-wrap: break-word;
+}
+.img-and-comment{
+  width: 100%;
+  height: 2.373rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.img-and-comment img{
+  width: 2.893rem;
+  height: 1.733rem;
+}
+.comment{
+  width: 5.067rem;
+  height: 1.8rem;
+  word-wrap: break-word;
+  font-size: 26px;
+  color: #3e3e3e;
+}

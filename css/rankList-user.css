@@ -1,0 +1,264 @@
+/*排行榜页面和用户页面布局大致相同，因此样式在一个css文件中*/
+.orange-bg{
+  width: 100%;
+  height: 7.427rem;
+  background-image: url(../images/ranklist/bg-2x.png);
+}
+header{
+  width: 100%;
+  height: 1.813rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+header div{
+  width: 7.786rem;
+  height: 0.88rem;
+  display: flex;
+  justify-content: space-between;
+}
+header img{
+  width: 0.76rem;
+  height: 0.84rem;
+  position: absolute;
+  left: 0.293rem;
+  top: 0.75rem;
+}
+header div a{
+  width: 2.4rem;
+  height: 0.88rem;
+  font-size: 40px;
+  color: #fffefe;
+  text-align: center;
+}
+.current-page{
+  border-bottom: solid;
+  border-bottom-color: #fffefe;
+  border-bottom-width: 0.053rem;
+}
+#head_range{
+  width: 100%;
+  height:5.613rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.range{
+  width: 100%;
+  height: 4.227rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+.range font{
+  font-size: 38px;
+  color: #3e3e3e;
+  align-self: center;
+  position: relative;
+  top: 0.63rem;
+}
+.range-one{
+  width: 2.747rem;
+  height: 3.747rem;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  position: relative;
+  top: -0.25rem;
+}
+.range-two{
+  width: 2.226rem;
+  height: 3.12rem;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+.range-one-user{
+  border:solid;
+  width: 2.267rem;
+  height: 2.267rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  position: relative;
+  top: 0.6rem;
+}
+.range-one-logo{
+  width: 1.36rem;
+  height: 1.293rem;
+  position: absolute;
+  align-self: flex-start;
+  z-index: 99;
+}
+.range-one font{
+   position: relative;
+  top: 0.75rem;
+}
+.range-two-user{
+  border:solid;
+  width: 1.893rem;
+  height: 1.893rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  position: relative;
+  top: 0.48rem;
+}
+.range-two-logo{
+  position: absolute;
+  width: 1rem;
+  height: 0.933rem;
+  align-self: flex-start;
+  z-index: 99;
+}
+.range-method{
+  width: 100%;
+  height: 1.386rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.range-method div{
+  height: 0.4rem;
+  display: flex;
+  justify-content: space-around;
+}
+.range-method img{
+  width: 0.467rem;
+  height: 0.4rem;
+}
+.range-method-button{
+  padding-left: 0.1rem;
+  background-color: transparent;
+  height: 0.4rem;
+  font-size: 30px;
+  color: rgb(254,206,188);
+}
+.current-button{
+  color: #ffffff;
+}
+#rest_range{
+  width: 100%;
+  height: 10.36rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.other-range{
+  width: 100%;
+  height: 1.746rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.num{
+  width: 1.587rem;
+  height: 1.746rem;
+  color: #9f9f9f;
+}
+.num p{
+  line-height: 1.746rem;
+  text-align: center;
+}
+.food-msg{
+  width: 8.413rem;
+  height: 1.746rem;
+  display: flex;
+  flex-direction: row;
+  border-bottom: solid;
+  border-bottom-color: rgba(125,125,125,0.2);
+  border-bottom-width: 1px;
+}
+.food-msg img{
+  width: 1.893rem;
+  height: 1.507rem;
+  background-color: rgb(235,230,224);
+}
+#about_food{
+  display: flex;
+  flex-direction: row;
+}
+.food-name{
+  width: 3.68rem;
+  height: 1.507rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.food-name span{
+  font-size: 40px;
+  color: #3e3e3e;
+  position: relative;
+  left: 0.28rem;
+}
+.food-name p{
+  font-size: 24px;
+  color: #9f9f9f;
+  position: relative;
+  left: 0.28rem;
+}
+.score{
+  width: 2.839rem;
+  height: 1.507rem;
+  text-align: center;
+}
+.score span{
+  font-size: 65px;
+  line-height: 1.507rem;
+  color: #feba33;
+}
+.add-button{
+  width: 1.333rem;
+  height: 1.333rem;
+  background-image: url(../images/ranklist/add-2x.png);
+  position: fixed;
+  top: 15.96rem;
+  right: 0.707rem;
+  z-index: 100;
+}
+
+/*用户页面的部分css*/
+.user-header{
+  align-items: center; 
+}
+.history-layout{
+  width: 100%;
+  height: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.other-history{
+  width: 100%;
+  height: 1.9rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.icon-div{
+  width: 1.813rem;
+  height: 0.88rem;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 2.25rem;
+  right: 0.6rem;
+}
+.icon-div div{
+  display: flex;
+  justify-content: space-between;
+  width: 1.813rem;
+  height: 0.387rem;
+}
+.icon-div div img{
+  width: 0.387rem;
+  height: 0.387rem;
+}
+.icon-div div a,button{
+  line-height: 0.387rem;
+  font-size: 24px;
+  color: #fefefe;
+  background-color: transparent;
+}
