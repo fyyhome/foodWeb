@@ -83,11 +83,11 @@ header div a{
   width: 6.587rem;
   height: 3.467rem;
   background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
+  display: inline;
+ /* flex-direction: row;
   flex-wrap: wrap;
   align-items: start;
-  justify-content: space-around;
+  justify-content: space-around;*/
   padding: 0.25rem;
 }
 .food{

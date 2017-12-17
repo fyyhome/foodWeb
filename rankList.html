@@ -51,19 +51,19 @@
         </div>
       </div>
       <div id="rest_range">
-        <div class="other-range" v-for="n in 5">
+        <div class="other-range" v-for="item in rank_user" v-if="item.rank > 3">
           <div class="num">
-            <p>{{n+3}}</p>
+            <p>{{item.rank}}</p>
           </div>
           <div class="food-msg">
-            <img v-bind:src="rank_user[0].foodImg" alt="美食">
+            <img v-bind:src="item.foodImg" alt="美食">
             <div id="about_food">
               <div class="food-name">
-                <span>好吃的哦</span>
-                <p>这是地点哦</p>
+                <span>{{item.foodName}}</span>
+                <p>{{item.foodSite}}</p>
               </div>
               <div class="score">
-                <span>5.0</span>
+                <span>{{item.score}}</span>
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@
       created:function(){
         var that = this;
          httpData.method = 'get';
-        httpData.url = 'http://192.168.2.212:8888/api/rank';
+        httpData.url = 'http://116.196.123.49:8080/api/rank';
         httpData.dealFn = this.dealResponse;
         sendMessage.call(that,httpData);
       }
