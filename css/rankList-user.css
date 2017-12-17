@@ -142,7 +142,7 @@ header div a{
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 .other-range{
   width: 100%;
