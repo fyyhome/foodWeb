@@ -27,7 +27,7 @@ header img{
 header div a{
   width: 2.4rem;
   height: 0.88rem;
-  font-size: 40px;
+  font-size: 0.533rem;
   color: #fffefe;
   text-align: center;
 }
@@ -51,7 +51,7 @@ header div a{
   align-items: flex-end;
 }
 .range font{
-  font-size: 38px;
+  font-size: 0.507rem;
   color: #3e3e3e;
   align-self: center;
   position: relative;
@@ -130,7 +130,7 @@ header div a{
   padding-left: 0.1rem;
   background-color: transparent;
   height: 0.4rem;
-  font-size: 30px;
+  font-size: 0.4rem;
   color: rgb(254,206,188);
 }
 .current-button{
@@ -159,7 +159,7 @@ header div a{
 .num p{
   line-height: 1.746rem;
   text-align: center;
-  font-size: 32px;
+  font-size: 0.427rem;
 }
 .food-msg{
   width: 8.413rem;
@@ -187,13 +187,13 @@ header div a{
   justify-content: space-around;
 }
 .food-name span{
-  font-size: 40px;
+  font-size: 0.533rem;
   color: #3e3e3e;
   position: relative;
   left: 0.28rem;
 }
 .food-name p{
-  font-size: 24px;
+  font-size: 0.32rem;
   color: #9f9f9f;
   position: relative;
   left: 0.28rem;
@@ -204,7 +204,7 @@ header div a{
   text-align: center;
 }
 .score span{
-  font-size: 65px;
+  font-size: 0.867rem;
   line-height: 1.507rem;
   color: #feba33;
 }
@@ -259,7 +259,7 @@ header div a{
 }
 .icon-div div a,button{
   line-height: 0.387rem;
-  font-size: 24px;
+  font-size: 0.32rem;
   color: #fefefe;
   background-color: transparent;
 }
