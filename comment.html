@@ -78,19 +78,8 @@
         }
       },
       dealButtonFn:function(txt){
-        if(txt.code == 0){
-          for(var i = 0; i < this.comments.length; i++){
-            if(this.comments[i].id == this.clickId){
-              if(this.comments[i].is_liked === false){
-                this.comments[i].is_liked = true;
-                this.comments[i].like_count += 1;
-              }
-              else{
-                this.comments[i].is_liked = false;
-                this.comments[i].like_count -= 1;
-              }
-            }
-          }
+        if(txt.code == 5){
+          window.location.href = "login.html";
         }
         else if(txt.code === 4 ){
           window.location.href = "login.html";
@@ -100,6 +89,18 @@
       zanButton:function(event){
         var that = this;
         this.clickId = event.currentTarget.getAttribute("value");
+        for(var i = 0; i < this.comments.length; i++){
+          if(this.comments[i].id == this.clickId){
+            if(this.comments[i].is_liked === false){
+              this.comments[i].is_liked = true;
+              this.comments[i].like_count += 1;
+            }
+            else{
+              this.comments[i].is_liked = false;
+              this.comments[i].like_count -= 1;
+            }
+          }
+        }
         httpData.method = "get";
         httpData.url = "http://139.199.66.15:5000/api/user/like/";
         httpData.url += this.clickId;

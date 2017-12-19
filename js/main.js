@@ -72,7 +72,7 @@ function form(httpData) {
             httpData.dealFn.call(that,reponseTxt);
         }
         else{
-            // alert("网络错误:"+oReq.status);
+          // alert("网络错误:"+oReq.status);
         }
     }
   };
