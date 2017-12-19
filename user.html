@@ -35,7 +35,7 @@
             </div>
             <div class="range-one user-header">
               <img class="range-one-user" v-bind:src="rank_user[0].head_img" alt="用户头像">
-              <font>食物描述</font>
+              <font>{{rank_user[0].nickname}}</font>
             </div>           
           </div>
           <div class="range-method">
@@ -52,7 +52,7 @@
       </div>
       <div class="history-layout">
         <div class="other-history" v-for="item in rank_user">
-          <div class="food-msg">
+          <div class="food-msg" v-bind:id="item.fid" @click="userPublish($event)">
             <img v-bind:src="item.img_urls" alt="美食">
             <div id="about_food">
               <div class="food-name">
@@ -80,7 +80,8 @@
           img_urls:null,
           site:null,
           publish_time:null,
-          head_img:null
+          head_img:null,
+          fid:null
         }],
         isLogin:false
       },
@@ -113,6 +114,9 @@
           if(window.localStorage.token != undefined)
             window.localStorage.removeItem("token");
           window.location.href = "login.html";
+        },
+        userPublish:function(event){
+          window.location.href = 'comment.html?' + 'id=' + event.currentTarget.getAttribute('id');
         },
         requestMore:function(){
           var that = this;

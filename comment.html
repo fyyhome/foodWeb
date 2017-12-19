@@ -15,9 +15,9 @@
       <button v-on:click="window.history.back()"></button>
       <img v-bind:src="comments[0].food_img" alt="美食">
       <div class="msg-div">
-        <h3>5.0</h3>
-        <h4>年糕</h4>
-        <p>商业街</p>
+        <h3>{{comments[0].score}}</h3>
+        <h4>{{comments[0].food_name}}</h4>
+        <p>{{comments[0].site}}</p>
       </div>
     </header>
     <div class="all-content">
@@ -59,7 +59,9 @@
         img_urls:null,
         food_img:null,
         user_img:null,
-        id:null
+        id:null,
+        food_name:null,
+        site:null
       }],
       clickId:null
     },
@@ -72,15 +74,21 @@
           this.comments.splice(0,1);
         }
         else{
-          alert("请先登录")
+          window.location.href = "rankList.html";
         }
       },
       dealButtonFn:function(txt){
         if(txt.code == 0){
           for(var i = 0; i < this.comments.length; i++){
             if(this.comments[i].id == this.clickId){
-               this.comments[i].is_liked = true;
-               this.comments[i].like_count += 1 
+              if(this.comments[i].is_liked === false){
+                this.comments[i].is_liked = true;
+                this.comments[i].like_count += 1;
+              }
+              else{
+                this.comments[i].is_liked = false;
+                this.comments[i].like_count -= 1;
+              }
             }
           }
         }
