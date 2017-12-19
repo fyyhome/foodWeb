@@ -36,7 +36,7 @@ function sendMessage(httpData){
             httpData.dealFn.call(that,reponseTxt);
         }
         else{
-            alert("网络错误:"+xhr.status);
+            // alert("网络错误:"+xhr.status);
         }
     }
   };
