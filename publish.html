@@ -95,7 +95,7 @@
       methods:{
         dealResponse:function(txt){
           if(txt.code == 0){
-            window.location.href = "user.html";
+            // window.location.href = "user.html";
           }
           else{
             console.log("发布失败");
@@ -111,7 +111,6 @@
         showImg:function(){
           var imgContainer = document.getElementById("addImg");
           var file = document.getElementById("img");
-          console.log(file.value)
           var imgUrl = window.URL.createObjectURL(file.files[0]);
           var img = document.createElement("img");
           img.setAttribute("src", imgUrl);

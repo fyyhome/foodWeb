@@ -8,9 +8,10 @@
     <link type="text/css" rel="stylesheet" href="./css/rankList-user.css">
     <script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="./js/main.js"></script>
+    
   </head>
   <body>
-    <div id="mainDiv">
+    <div id="mainDiv" v-if="isLogin">
       <div class="orange-bg">
         <header>
           <img src="./images/index/logo_2x.png" alt="logo">
@@ -24,7 +25,7 @@
           <div class="range">
             <div class="icon-div">
               <div>
-                <img src="./images/user/change password-2x.png" alt="修改密码">
+                <img src="./images/user/change_password-2x.png" alt="修改密码">
                 <a href="changePassword.html">修改密码</a>
               </div>
               <div>
@@ -45,16 +46,12 @@
             <div>
               <img src="./images/user/notice-2x.png" alt="系统通知">
               <button class="range-method-button" v-bind:class="{'current-button': timeOrScore}">系统通知</button>
-              <!-- <button class="range-method-button" v-on:click="noticeButton" v-bind:class="{'current-button': timeOrScore}">系统通知</button> -->
             </div>
           </div>
         </div>
       </div>
       <div class="history-layout">
         <div class="other-history" v-for="item in rank_user">
-          <!-- <div class="num">
-            <p>{{n+3}}</p>
-          </div> -->
           <div class="food-msg">
             <img v-bind:src="item.img_urls" alt="美食">
             <div id="about_food">
@@ -84,28 +81,31 @@
           site:null,
           publish_time:null,
           head_img:null
-        }]
+        }],
+        isLogin:false
       },
       methods:{
         dealResponse:function(txt){
-          for(var i = 0; i < txt.comments.length; i++){
-            this.rank_user.push(txt.comments[i]);
+          if(txt.code === 0){
+            this.isLogin = true;
+            for(var i = 0; i < txt.comments.length; i++){
+              this.rank_user.push(txt.comments[i]);
+            }
+            this.rank_user.splice(0,1); 
           }
-          this.rank_user.splice(0,1);      
+          else{
+            window.location.href = "login.html";
+          }     
         },
         historyButton:function(){
           this.timeOrScore = 0;
           var that = this;
-          // httpData.method = 'get';
-          // httpData.dealFn = this.dealResponse;
           httpData.url = addURL('http://139.199.166.15:5000/api/user/comments',rankMethod,score);
           sendMessage.call(that,httpData);
         },
         noticeButton:function(){
           this.timeOrScore = 1;
           var that = this;
-          // httpData.method = 'get';
-          // httpData.dealFn = this.dealResponse;
           httpData.url = addURL('http://139.199.166.15:5000/api/user/comments',rankMethod,time);
           sendMessage.call(that,httpData);
         },
@@ -116,8 +116,6 @@
         },
         requestMore:function(){
           var that = this;
-          // httpData.method = 'get';
-          // httpData.dealFn = this.dealResponse;
           httpData.url = addURL('http://139.199.166.15:5000/api/user/comments',rankMethod,score);
           touchMove.call(that,httpData);
         }

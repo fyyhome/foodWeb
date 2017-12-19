@@ -74,34 +74,67 @@ header div a{
 .shops{
   width: 7.133rem;
   height: 100%;
+  overflow-y: scroll;
   background-color: rgb(240,240,241);
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 0.1rem;
 }
 .shop{
   width: 6.587rem;
   height: 3.467rem;
   background-color: #ffffff;
   display: inline;
- /* flex-direction: row;
-  flex-wrap: wrap;
-  align-items: start;
-  justify-content: space-around;*/
   padding: 0.25rem;
+  margin-top: 0.7rem;
+  position: relative;
 }
 .food{
-  width: 1.307rem;
+  width: 1.107rem;
+  position: relative;
   display: inline-block;
+  box-sizing: content-box;
   word-wrap: break-word;
   height: auto;
-  max-height: 2rem;
-  font-size: 24px;
-  border:solid;
+  min-height: 0.56rem;
+  max-height: 0.827rem;
+  font-size: 0.32rem;
+  vertical-align: middle;
+  background-color: #ffefbf;
+  border-radius: 10px;
+  padding-left: 0.2rem;
+  /*border:solid;*/
 }
-.food button{
-  width: 1.307rem;
-  height: 100%;
+.food img{
+  width: 0.413rem;
+  height: 0.413rem;
   position: absolute;
-  background-color: transparent;
+  left: -0.2rem;
+  top: -0.1rem;
+}
+.shop-name{
+  height: 0.947rem;
+  position: absolute;
+  top: -0.6rem;
+  left: 2.35rem;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shop-name-txt{
+  width: 1.95rem;
+  height: 0.667rem;
+  font-size: 0.32rem;
+  text-align: center;
+  line-height: 0.667rem;
+  color: #4e4e4e;
+  background-color: #fbdfb5;
+  border-radius: 0.133rem;
+}
+.shop-name-icon{
+  width: 0.267rem;
+  height: 0.28rem;
+  background-color: #7e6b5a;
 }

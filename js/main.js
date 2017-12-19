@@ -41,9 +41,10 @@ function sendMessage(httpData){
     }
   };
   xhr.open(httpData.method,httpData.url,true);
-  if(window.localStorage.token == undefined) {
-    window.localStorage.token = "qqq";
-  }
+  // if(window.localStorage.token == null) {
+  //   window.localStorage.token = "qqq";
+  // }
+
   xhr.setRequestHeader("Authorization",window.localStorage.token);
   if(httpData.method === 'post'){
     var msg = JSON.stringify(httpData.msg);
@@ -71,14 +72,14 @@ function form(httpData) {
             httpData.dealFn.call(that,reponseTxt);
         }
         else{
-            alert("网络错误:"+oReq.status);
+            // alert("网络错误:"+oReq.status);
         }
     }
   };
-  oReq.open(httpData.method,httpData.url,true);
-  if(window.localStorage.token == undefined) {
-    window.localStorage.token = "qqq";
-  }
+  // oReq.open(httpData.method,httpData.url,true);
+  //  if(window.localStorage.token == undefined) {
+  //    window.localStorage.token = "qqq";
+  //  }
   oReq.setRequestHeader("Authorization",window.localStorage.token);
   oReq.send(formData);
 }

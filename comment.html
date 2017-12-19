@@ -65,10 +65,15 @@
     },
     methods:{
       dealResponse:function(txt){
-        for(var i = 0; i < txt.comments.length; i++){
-          this.comments.push(txt.comments[i]);
+        if(txt.code === 0){
+          for(var i = 0; i < txt.comments.length; i++){
+            this.comments.push(txt.comments[i]);
+          }
+          this.comments.splice(0,1);
         }
-        this.comments.splice(0,1);
+        else{
+          alert("请先登录")
+        }
       },
       dealButtonFn:function(txt){
         if(txt.code == 0){
@@ -95,9 +100,14 @@
       }
     },
     mounted:function(){
+      if(window.location.href.split('=')[1] != undefined){
+        httpData.url = 'http://139.199.66.15:5000/api/food/' + window.location.href.split('=')[1]
+      }
+      else{
+         httpData.url = "http://139.199.66.15:5000/api/food/1";
+      }
       var that = this;
       httpData.method = "get";
-      httpData.url = "http://139.199.66.15:5000/api/food/1";
       httpData.dealFn = this.dealResponse;
       sendMessage.call(that,httpData);
     }

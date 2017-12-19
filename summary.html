@@ -10,9 +10,9 @@
       <script type="text/javascript" src="./js/main.js"></script>
   </head>
   <body>
-    <div>
+    <div id="mainDiv">
       <header>
-        <img src="./images/ranklist/logo.png" alt="logo">
+        <img src="./images/ranklist/logo-2x.png" alt="logo">
         <div>
           <a href="ranklist.html">排行</a>
           <a class="current-page">汇总</a>
@@ -22,40 +22,35 @@
       <div id="details">
         <aside>
           <div class="canteens">
-            <input id="commercial_street" type="button" value="商业街">
-            <input id="canteen_one" type="button" value="一食堂">
-            <input id="canteen_two" type="button" value="二食堂">
-            <input id="canteen_one_three" type="button" value="一食堂三楼">
-            <input id="canteen_three" type="button" value="三食堂">
-            <input id="canteen_four" type="button" value="四食堂">
-            <input id="canteen_four_three" type="button" value="四食堂三楼">
-            <input id="canteen_six" type="button" value="六食堂">
-            <input id="canteen_seven" type="button" value="七食堂">
-            <input id="canteen_nine" type="button" value="九食堂">
-            <input id="canteen_ten" type="button" value="十食堂">
-            <input id="canteen_nine_three" type="button" value="九食堂三楼">
-            <input id="others" type="button" value="其他">
+            <input id="syj" type="button" value="商业街" @click="siteButton($event)">
+            <input id="yst" type="button" value="一食堂" @click="siteButton($event)">
+            <input id="est" type="button" value="二食堂" @click="siteButton($event)">
+            <input id="ystsl" type="button" value="一食堂三楼" @click="siteButton($event)">
+            <input id="sanst" type="button" value="三食堂" @click="siteButton($event)">
+            <input id="sist" type="button" value="四食堂" @click="siteButton($event)">
+            <input id="sstsl" type="button" value="四食堂三楼" @click="siteButton($event)">
+            <input id="lst" type="button" value="六食堂" @click="siteButton($event)">
+            <input id="qst" type="button" value="七食堂" @click="siteButton($event)">
+            <input id="jst" type="button" value="九食堂" @click="siteButton($event)">
+            <input id="shist" type="button" value="十食堂" @click="siteButton($event)">
+            <input id="jstsl" type="button" value="九食堂三楼" @click="siteButton($event)">
+            <input id="others" type="button" value="其他" @click="siteButton($event)">
           </div>
           <div class="logo">
             <img src="./images/publish/home-2x.png" alt="logo">
           </div>
         </aside>
         <div class="shops">
-          <div class="shop">
-            <div class="food">
-              麻辣烫烫烫烫烫
+          <div class="shop" v-for="item in foods">
+            <div class="shop-name">
+              <div class="shop-name-txt">
+                {{item[0].shop}}
+              </div>
+              <div class="shop-name-icon"></div>
             </div>
-            <div class="food">
-              麻辣烫烫烫烫烫
-            </div>
-            <div class="food">
-              麻辣
-            </div>
-            <div class="food">
-              麻辣烫烫烫烫烫
-            </div>
-            <div class="food">
-              麻辣烫烫烫烫烫
+            <div class="food" v-for="todo in item" v-bind:id="todo.id" @click="foodNameButton($event)">
+              <img src="./images/publish/hot-2x.png" v-if="todo.is_hot">
+              {{todo.food_name}}
             </div>
           </div>
         </div>
@@ -64,6 +59,50 @@
   </body>
   <script>
     var app = new Vue({
-    });
+      el:"#mainDiv",
+      data:{
+        foods:[
+          [
+            {
+              id:1,
+              food_name:'待定',
+              shop:'待定',
+              is_hot:true
+            }
+          ]
+        ],
+        requestId:null
+      },
+      methods:{
+        dealResponse:function(txt){
+          if(txt.code === 0){
+            this.foods.splice(0,this.foods.length);
+             for(item in txt.foods){
+              this.foods.push(txt.foods[item]);
+            }
+          }
+        },
+        foodNameButton:function(event){
+          this.requestId = event.currentTarget.getAttribute('id');
+          window.location.href = 'comment.html?'+'id='+this.requestId;
+        },
+        siteButton:function(event){
+          var that = this;
+          var site = event.currentTarget.getAttribute('id');
+          httpData.url = "http://139.199.66.15:5000/api/all_food/";
+          httpData.url += site;
+          httpData.dealFn = this.dealResponse;
+          sendMessage.call(that,httpData);
+        }
+      },
+      mounted:function(){
+        var that = this;
+        httpData.method = "get";
+        httpData.url = "http://139.199.66.15:5000/api/all_food/";
+        httpData.url += 'ystsl';
+        httpData.dealFn = this.dealResponse;
+        sendMessage.call(that,httpData);
+      }
+    })
   </script>
 </html>
