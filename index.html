@@ -18,17 +18,24 @@
     </div>
     <div id="index" class="input-div">
       <form accept-charset="utf-8" style="height: 7.5rem">
+        <div>
            <img src="./images/index/head_2x.png"/> 
            <input type="text" id="username" placeholder="请输入手机号" v-model="phone_number">
-           <hr>
+        </div>
+        <div>
            <img src="./images/index/name-2x.png"/> 
            <input type="text" id="nickname" placeholder="请输入昵称" v-model="nickname">
-           <hr>
+        </div>
+        <div>
            <img src="./images/index/password_2x.png"/> 
            <input type="password" id="password" placeholder="请输入密码" v-model="password">
-           <hr>
+        </div>
+        <div>
            <input type="button" v-on:click="regist" value="注册">
-           <a class="back-style back-login" href="login.html">登录</a>
+         </div>
+         <div id="back-style">
+           <a href="login.html">登录</a>
+         </div>
       </form>
       <div class="error-tip" v-if="tip != null">{{tip}}</div>
     </div>

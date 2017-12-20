@@ -84,6 +84,7 @@ header div a{
 .shop{
   width: 6.587rem;
   height: 3.467rem;
+/*  overflow-y: scroll;*/
   background-color: #ffffff;
   display: inline;
   padding: 0.25rem;
@@ -98,13 +99,13 @@ header div a{
   word-wrap: break-word;
   height: auto;
   min-height: 0.56rem;
-  max-height: 0.827rem;
+  max-height: 1.25rem;
   font-size: 0.32rem;
   vertical-align: middle;
   background-color: #ffefbf;
   border-radius: 10px;
   padding-left: 0.2rem;
-  /*border:solid;*/
+  margin-left: 0.15rem;
 }
 .food img{
   width: 0.413rem;

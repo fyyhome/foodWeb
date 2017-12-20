@@ -18,13 +18,21 @@
     </div>
     <div id="login" class="input-div">
       <form action="#" method="post" accept-charset="utf-8">
+        <div>
            <img src="./images/index/head_2x.png"/> 
-           <input type="text" id="username" placeholder="请输入账号" v-model="phone_number"><hr>
+           <input type="text" id="username" placeholder="请输入账号" v-model="phone_number">
+        </div>
+        <div>
            <img src="./images/index/password_2x.png"/> 
-           <input type="password" id="password" placeholder="请输入密码" v-model="password"><hr>
+           <input type="password" id="password" placeholder="请输入密码" v-model="password">
+        </div>
+        <div>
            <input type="button" value="登录" v-on:click="loginFn">
-           <a class="back-style change-password" href="changePassword.html">修改密码</a>
-           <a class="back-style back-index" href="index.html">注册</a>
+        </div>
+        <div id="back-style">
+          <a  href="changePassword.html">修改密码</a>
+          <a  href="index.html">注册</a>
+        </div>
       </form>
       <div class="error-tip" v-if="tip != null">{{tip}}</div>
     </div>

@@ -185,4 +185,18 @@ header a{
 .select-site input[type=button]:hover{
   background-color: rgb(244,244,244);
 }
+.tip{
+  width: 4rem;
+  height: 1.68rem;
+  position: fixed;
+  top: 7.5rem;
+  left: 3.25rem;
+  text-align: center;
+  vertical-align: middle;
+  color: #ffffff;
+  font-size: 0.453rem;
+  background-color: #9f9f9f;
+  border-radius: 0.4rem;
+  opacity: 0.7;
+}
 

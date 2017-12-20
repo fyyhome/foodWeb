@@ -73,6 +73,9 @@
             <input type="button" value="发布" @click="publishButton">
           </div>
         </form>
+        <div class="tip" v-if="tip">
+          {{tipTxt}}
+        </div>
       </div>
       <footer>
       </footer>
@@ -90,15 +93,28 @@
             shop:null,
             img:null
           },
-          select_site:0
+          select_site:0,
+          tip:false,
+          tipTxt:null
       },
       methods:{
         dealResponse:function(txt){
           if(txt.code == 0){
-            // window.location.href = "user.html";
+            this.tipTxt = '发布成功';
+            this.tip = true;
+            var that = this;
+            setTimeout(function(){
+              that.tip = false;
+              window.location.href = "comment.html";
+            },1500)
           }
           else{
-            console.log("发布失败");
+            this.tipTxt = '发布失败';
+            this.tip = true;
+            var that = this;
+            setTimeout(function(){
+              that.tip = false;
+            },1500)
           }
         },
         showSelectSite:function(){
