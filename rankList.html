@@ -91,7 +91,6 @@
         dealResponse:function(txt){
           if(txt.code == 0){
             for(var i = 0; i < txt.data.length; i++){
-              console.log(txt.data[i].foodImg);
               this.rank_user.push(txt.data[i]);
             }
             this.rank_user.splice(0,1);      
@@ -106,36 +105,36 @@
         scoreButton:function(){
           this.timeOrScore = 0;
           var that = this;
-          // httpData.method = 'get';
-          // httpData.dealFn = this.dealResponse;
-          // httpData.url = addURL('',rankMethod,score);
-          // sendMessage.call(that,httpData);
+          httpData.method = 'get';
+          httpData.dealFn = this.dealResponse;
+          httpData.url = addURL('',rankMethod,score);
+          sendMessage.call(that,httpData);
         },
         timeButton:function(){
           this.timeOrScore = 1;
           var that = this;
-          // httpData.method = 'get';
-          // httpData.dealFn = this.dealResponse;
-          // httpData.url = addURL('',rankMethod,time);
-          // sendMessage.call(that,httpData);
+          httpData.url = addURL('http://192.168.2.213:8080/api/rank','p','time');
+          sendMessage.call(that,httpData);
         },
         
-        addButton:function(){
-          // if (window.localStorage.token == undefined) {
-            window.location.href = "publish.html";
-          // }
-          // else{
-          //   var that = this;
-          //   httpData.method = 'get';
-          //   httpData.url = addURL('',judge,isOnline);
-          //   httpData.dealFn = this.dealResponse;
-          //   sendMessage.call(that,httpData);
-          // }
+        addButton:function(){  
+          var that = this;
+          httpData.method = 'get';
+          httpData.url = addURL('http://139.199.66.15:5000/api/track','request','true');
+          httpData.dealFn = function(txt){
+            if(txt.code != 0){
+              window.location.href = "login.html";
+            }
+            else{
+              window.location.href = "publish.html";
+            }
+          }
+          sendMessage.call(that,httpData);
         }
       },
       created:function(){
         var that = this;
-         httpData.method = 'get';
+        httpData.method = 'get';
         httpData.url = 'http://116.196.123.49:8080/api/rank';
         httpData.dealFn = this.dealResponse;
         sendMessage.call(that,httpData);

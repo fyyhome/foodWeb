@@ -231,6 +231,7 @@ header div a{
   background-color: white;
   display: flex;
   flex-direction: column;
+  padding-top: 0.25rem;
 }
 .other-history{
   width: 100%;

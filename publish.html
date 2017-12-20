@@ -17,7 +17,7 @@
       <div class="form-div">
         <form>
           <div class="form-score laout1">
-            <span class="title-txt">评分:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="title-txt">评分:</span>
             <input type="range" value="0" step="0.1" max="5" id="score" v-model="message.score">
             <div class="form-score-div">
               <span class="score-txt">{{message.score}}</span> 
@@ -59,7 +59,6 @@
           <div class="form-content laout1">
             <span class="title-txt form-content-span">我的评价:</span>
             <textarea id="myContent" v-model="message.content"></textarea>
-            <!-- <input type="textarea" id="content" v-model="content"> -->
             <div>
             </div>
           </div>
@@ -105,7 +104,7 @@
             var that = this;
             setTimeout(function(){
               that.tip = false;
-              window.location.href = "comment.html";
+              window.location.href = "comment.html" + 'id=' + txt.fid;
             },1500)
           }
           else{
@@ -135,9 +134,10 @@
           imgContainer.appendChild(imgAdd);
         },
         publishButton:function(){
+          console.log(1)
           this.message.img = document.getElementById("img").files[0];
           httpData.method = 'post';
-          httpData.url = 'http://116.196.123.49:8080/api/newComment';
+          httpData.url = 'http://192.168.2.213:8080/api/newComment';
           httpData.msg = this.message;
           httpData.dealFn = this.dealResponse;
           var that = this;
