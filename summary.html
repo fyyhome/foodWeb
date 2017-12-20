@@ -64,9 +64,9 @@
         foods:[
           [
             {
-              id:1,
-              food_name:'待定',
-              shop:'待定',
+              id:null,
+              food_name:null,
+              shop:null,
               is_hot:true
             }
           ]
@@ -95,7 +95,7 @@
           sendMessage.call(that,httpData);
         }
       },
-      mounted:function(){
+      created:function(){
         var that = this;
         httpData.method = "get";
         httpData.url = "http://139.199.66.15:5000/api/all_food/";

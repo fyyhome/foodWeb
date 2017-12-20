@@ -55,7 +55,7 @@
           <div class="num">
             <p>{{item.rank}}</p>
           </div>
-          <div class="food-msg">
+          <div class="food-msg" id="item.fid" @click="foodClick($event)">
             <img v-bind:src="item.foodImg" alt="美食">
             <div id="about_food">
               <div class="food-name">
@@ -83,7 +83,8 @@
           foodName:null,
           foodSite:null,
           foodShop:null,
-          foodImg:null
+          foodImg:null,
+          fid:null
         }]
       },
       methods:{
@@ -98,6 +99,9 @@
           else{
             window.location.href = "login.html";
           }    
+        },
+        foodClick:function(event){
+          window.location.href = "comment.html?" + 'id=' + event.currentTarget.getAttribute("id");
         },
         scoreButton:function(){
           this.timeOrScore = 0;
