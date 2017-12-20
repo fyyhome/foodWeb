@@ -87,17 +87,22 @@
       },
       //点赞按钮事件处理函数
       zanButton:function(event){
-        var that = this;
-        this.clickId = event.currentTarget.getAttribute("value");
-        for(var i = 0; i < this.comments.length; i++){
-          if(this.comments[i].id == this.clickId){
-            if(this.comments[i].is_liked === false){
-              this.comments[i].is_liked = true;
-              this.comments[i].like_count += 1;
-            }
-            else{
-              this.comments[i].is_liked = false;
-              this.comments[i].like_count -= 1;
+        if(window.localStorage.token == null){
+          window.location.href = "login.html";
+        }
+        else{
+          var that = this;
+          this.clickId = event.currentTarget.getAttribute("value");
+          for(var i = 0; i < this.comments.length; i++){
+            if(this.comments[i].id == this.clickId){
+              if(this.comments[i].is_liked === false){
+                this.comments[i].is_liked = true;
+                this.comments[i].like_count += 1;
+              }
+              else{
+                this.comments[i].is_liked = false;
+                this.comments[i].like_count -= 1;
+              }
             }
           }
         }
