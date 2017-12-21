@@ -76,6 +76,16 @@
           {{tipTxt}}
         </div>
       </div>
+      <div class="z_mask" v-if="removeTip">
+        <!--弹出框-->
+        <div class="z_alert">
+          <p>确定要删除这张图片吗？</p>
+          <p>
+            <span class="z_cancel" @click="cancelRemove">取消</span>
+            <span id="z_sure" @click="sureRemove">确定</span>
+          </p>
+        </div>
+      </div>
       <footer>
       </footer>
     </div>
@@ -94,7 +104,8 @@
           },
           select_site:0,
           tip:false,
-          tipTxt:null
+          tipTxt:null,
+          removeTip:false
       },
       methods:{
         dealResponse:function(txt){
@@ -104,7 +115,7 @@
             var that = this;
             setTimeout(function(){
               that.tip = false;
-              window.location.href = "comment.html" + 'id=' + txt.fid;
+              window.location.href = "comment.html?" + 'id=' + txt.fid;
             },1500)
           }
           else{
@@ -130,14 +141,32 @@
           var img = document.createElement("img");
           img.setAttribute("src", imgUrl);
           var imgAdd = document.createElement("div");
+          imgAdd.setAttribute("id","img-div");
           imgAdd.appendChild(img);
           imgContainer.appendChild(imgAdd);
+          this.removeImg();
+        },
+        sureRemove:function(){
+          var parent = document.getElementById("addImg");
+          var child = document.getElementById("img-div");
+          parent.removeChild(child);
+          this.removeTip = false;
+        },
+        cancelRemove:function(){
+          this.removeTip = false;
+        },
+        removeImg:function(){
+          var imgDiv = document.getElementById("img-div");
+          var that = this;
+          imgDiv.onclick = function(){
+            that.removeTip = true;
+          }
         },
         publishButton:function(){
           console.log(1)
           this.message.img = document.getElementById("img").files[0];
           httpData.method = 'post';
-          httpData.url = 'http://192.168.2.213:8080/api/newComment';
+          httpData.url = 'http://116.196.123.49:8080/api/newComment';
           httpData.msg = this.message;
           httpData.dealFn = this.dealResponse;
           var that = this;
