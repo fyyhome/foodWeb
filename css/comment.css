@@ -41,8 +41,8 @@ header button{
   height: 11.467rem;
   overflow-y: scroll;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .user-content{
   height: 3.853rem;
@@ -83,7 +83,7 @@ header button{
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   padding-left: 0.25rem;
 }
 .user-header span{

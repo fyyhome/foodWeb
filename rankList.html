@@ -90,10 +90,10 @@
       methods:{
         dealResponse:function(txt){
           if(txt.code == 0){
+            this.rank_user.splice(0,this.rank_user.length);
             for(var i = 0; i < txt.data.length; i++){
               this.rank_user.push(txt.data[i]);
-            }
-            this.rank_user.splice(0,1);      
+            }      
           }
           else{
             window.location.href = "login.html";
@@ -107,7 +107,7 @@
           var that = this;
           httpData.method = 'get';
           httpData.dealFn = this.dealResponse;
-          httpData.url = addURL('',rankMethod,score);
+          httpData.url = addURL('http://116.196.123.49:8080/api/rank','p','score');2
           sendMessage.call(that,httpData);
         },
         timeButton:function(){
