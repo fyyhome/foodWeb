@@ -216,9 +216,9 @@ header div a{
   height: 1.333rem;
   background-image: url(../images/ranklist/add-2x.png);
   position: fixed;
-  top: 16.25rem;
+  top: 15rem;
   right: 0.707rem;
-  z-index: 199;
+  z-index: 999;
 }
 
 /*用户页面的部分css*/

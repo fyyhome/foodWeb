@@ -24,17 +24,17 @@
           <div class="range">
             <div class="range-two">
               <img class="range-two-logo" src="./images/ranklist/silvery_crown-2x.png" alt="第三名">
-              <img class="range-two-user" v-bind:src="rank_user[2].foodImg" alt="用户头像">
+              <img class="range-two-user" v-bind:src="rank_user[2].foodImg" alt="用户头像" v-bind:id="rank_user[2].fid" @click="foodClick($event)">
               <font>{{rank_user[2].foodName}}</font>
             </div>
             <div class="range-one">
               <img class="range-one-logo" src="./images/ranklist/yellow_crown-2x.png" alt="第一名">
-              <img class="range-one-user" v-bind:src="rank_user[0].foodImg" alt="用户头像">
+              <img class="range-one-user" v-bind:src="rank_user[0].foodImg" alt="用户头像" v-bind:id="rank_user[0].fid" @click="foodClick($event)">
               <font>{{rank_user[0].foodName}}</font>
             </div>
             <div class="range-two">
               <img class="range-two-logo" src="./images/ranklist/coppery_crown-2x.png" alt="第二名">
-              <img class="range-two-user" v-bind:src="rank_user[1].foodImg" alt="用户头像">
+              <img class="range-two-user" v-bind:src="rank_user[1].foodImg" alt="用户头像" v-bind:id="rank_user[1].fid" @click="foodClick($event)">
               <font>{{rank_user[1].foodName}}</font>
             </div>
           </div>
@@ -55,7 +55,7 @@
           <div class="num">
             <p>{{item.rank}}</p>
           </div>
-          <div class="food-msg" id="item.fid" @click="foodClick($event)">
+          <div class="food-msg" v-bind:id="item.fid" @click="foodClick($event)">
             <img v-bind:src="item.foodImg" alt="美食">
             <div id="about_food">
               <div class="food-name">
@@ -100,7 +100,7 @@
           }    
         },
         foodClick:function(event){
-          window.location.href = "comment.html?" + 'id=' + event.currentTarget.getAttribute("id");
+          window.location.href = 'comment.html?' + 'id=' + event.currentTarget.getAttribute("id");
         },
         scoreButton:function(){
           this.timeOrScore = 0;
