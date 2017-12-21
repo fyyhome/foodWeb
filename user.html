@@ -34,8 +34,8 @@
               </div>
             </div>
             <div class="range-one user-header">
-              <img class="range-one-user" v-bind:src="rank_user[0].head_img" alt="用户头像">
-              <font>{{rank_user[0].nickname}}</font>
+              <img class="range-one-user" v-bind:src="info.head_img" alt="用户头像">
+              <font>{{info.nickname}}</font>
             </div>           
           </div>
           <div class="range-method">
@@ -73,22 +73,25 @@
       el:'#mainDiv',
       data:{
         timeOrScore:0,
-        rank_user:[{
-          nickname:null,
+        rank_user:[{          
           score:null,
           food_name:null,
           img_urls:null,
           site:null,
           publish_time:null,
-          head_img:null,
           fid:null
         }],
-        isLogin:false
+        isLogin:false,
+        info:{
+          nickname:null,
+          head_img:null
+        }
       },
       methods:{
         dealResponse:function(txt){
           if(txt.code === 0){
             this.isLogin = true;
+            this.info = txt.info;
             for(var i = 0; i < txt.comments.length; i++){
               this.rank_user.push(txt.comments[i]);
             }
