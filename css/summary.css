@@ -139,3 +139,13 @@ header div a{
   height: 0.28rem;
   background-color: #7e6b5a;
 }
+.add-button{
+  width: 1.333rem;
+  height: 1.333rem;
+  background-image: url(../images/ranklist/add-2x.png);
+  background-color: transparent;
+  position: fixed;
+  top: 14.5rem;
+  right: 0.707rem;
+  z-index: 999;
+}

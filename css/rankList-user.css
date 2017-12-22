@@ -80,7 +80,7 @@ header div a{
   border-radius: 50%;
   -webkit-border-radius: 50%;
   position: relative;
-  top: 0.6rem;
+  top: 0.7rem;
 }
 .range-one-logo{
   width: 1.36rem;
@@ -91,7 +91,7 @@ header div a{
 }
 .range-one font{
    position: relative;
-  top: 0.75rem;
+  top: 0.85rem;
   padding-left: 0.3rem;
 }
 .range-two-user{
@@ -216,7 +216,7 @@ header div a{
   height: 1.333rem;
   background-image: url(../images/ranklist/add-2x.png);
   position: fixed;
-  top: 15rem;
+  top: 14.5rem;
   right: 0.707rem;
   z-index: 999;
 }
@@ -227,10 +227,11 @@ header div a{
 }
 .history-layout{
   width: 100%;
-  height: auto;
+  height: 10.36rem;
+  overflow-y: scroll;
   background-color: white;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   padding-top: 0.25rem;
 }
 .other-history{
@@ -266,4 +267,8 @@ header div a{
   font-size: 0.32rem;
   color: #fefefe;
   background-color: transparent;
+}
+.notice-tip{
+  font-size: 0.533rem;
+  text-align: center;
 }

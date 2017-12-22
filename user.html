@@ -41,17 +41,17 @@
           <div class="range-method">
             <div>
               <img src="./images/user/release-2x.png" alt="发布历史">
-              <button class="range-method-button" v-on:click="historyButton" v-bind:class="{'current-button': !timeOrScore}">发布历史</button>
+              <button class="range-method-button" @click="historyButton" v-bind:class="{'current-button': !timeOrScore}">发布历史</button>
             </div>
             <div>
               <img src="./images/user/notice-2x.png" alt="系统通知">
-              <button class="range-method-button" v-bind:class="{'current-button': timeOrScore}">系统通知</button>
+              <button class="range-method-button" v-bind:class="{'current-button': timeOrScore}" @click="noticeButton">系统通知</button>
             </div>
           </div>
         </div>
       </div>
       <div class="history-layout">
-        <div class="other-history" v-for="item in rank_user">
+        <div class="other-history" v-for="item in rank_user" v-if="!timeOrScore">
           <div class="food-msg" v-bind:id="item.fid" @click="userPublish($event)">
             <img v-bind:src="item.img_urls" alt="美食">
             <div id="about_food">
@@ -64,6 +64,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div v-if="timeOrScore" class="notice-tip">
+          功能暂未开放，敬请期待
         </div>
       </div>
     </div>
@@ -90,12 +93,12 @@
       methods:{
         dealResponse:function(txt){
           if(txt.code === 0){
+            this.rank_user.splice(0,this.rank_user.length);
             this.isLogin = true;
             this.info = txt.info;
             for(var i = 0; i < txt.comments.length; i++){
               this.rank_user.push(txt.comments[i]);
             }
-            this.rank_user.splice(0,1); 
           }
           else{
             window.location.href = "login.html";
@@ -104,14 +107,14 @@
         historyButton:function(){
           this.timeOrScore = 0;
           var that = this;
-          httpData.url = addURL('http://139.199.166.15:5000/api/user/comments',rankMethod,score);
+          httpData.url = 'http://139.199.66.15:5000/api/user/comments';
           sendMessage.call(that,httpData);
         },
         noticeButton:function(){
           this.timeOrScore = 1;
-          var that = this;
-          httpData.url = addURL('http://139.199.166.15:5000/api/user/comments',rankMethod,time);
-          sendMessage.call(that,httpData);
+          // var that = this;
+          // httpData.url = addURL('http://139.199.166.15:5000/api/user/comments',rankMethod,time);
+          // sendMessage.call(that,httpData);
         },
         quitButton:function(){
           if(window.localStorage.token != undefined)

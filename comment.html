@@ -13,9 +13,9 @@
   <div id="mainDiv">
     <header>
       <button v-on:click="window.history.back()"></button>
-      <img v-bind:src="comments[0].food_img" alt="美食">
+      <img v-bind:src="food_info.food_img" alt="美食">
       <div class="msg-div">
-        <h3>{{comments[0].score}}</h3>
+        <h3>{{food_info.score}}</h3>
         <h4>{{comments[0].food_name}}</h4>
         <p>{{comments[0].site}}</p>
       </div>
@@ -57,21 +57,25 @@
         publish_time:null,
         is_liked:null,
         img_urls:null,
-        food_img:null,
         user_img:null,
         id:null,
         food_name:null,
         site:null
       }],
-      clickId:null
+      clickId:null,
+      food_info:{
+        food_img:null,
+        score:null
+      }
     },
     methods:{
       dealResponse:function(txt){
         if(txt.code === 0){
+          this.food_info = txt.food_info;
+          this.comments.splice(0,this.comments.length)
           for(var i = 0; i < txt.comments.length; i++){
             this.comments.push(txt.comments[i]);
           }
-          this.comments.splice(0,1);
         }
         else{
           window.location.href = "rankList.html";
