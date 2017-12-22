@@ -53,7 +53,7 @@
       <div id="rest_range">
         <div class="other-range" v-for="item in rank_user" v-if="item.rank > 3">
           <div class="num">
-            <p>{{item.rank}}</p>
+            <p v-if="!timeOrScore">{{item.rank}}</p>
           </div>
           <div class="food-msg" v-bind:id="item.fid" @click="foodClick($event)">
             <img v-bind:src="item.foodImg" alt="美食">
